@@ -1,6 +1,6 @@
 {
   "name": "coffeelint-no-implicit-returns",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Checks for explicit returns in multi-line functions",
   "main": "index.js",
   "keywords": [
