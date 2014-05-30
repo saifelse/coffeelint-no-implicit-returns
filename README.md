@@ -12,10 +12,8 @@ explicit return statement.
 Installation
 ------------
 
-Clone the repository and then run:
-
 ```sh
-npm install ./coffeelint-no-implicit-returns
+npm install coffeelint-no-implicit-returns
 ```
 
 Usage
