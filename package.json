@@ -1,0 +1,35 @@
+{
+  "name": "coffeelint-no-implicit-returns",
+  "version": "0.0.1",
+  "description": "Checks for explicit returns in multi-line functions",
+  "main": "index.js",
+  "keywords": [
+    "coffeelint",
+    "coffeelintrule",
+    "coffee-lint",
+    "newline",
+    "rule"
+  ],
+  "author": {
+    "name": "Saif Hakim",
+    "email": "saif7463@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/saifelse/coffeelint-no-implicit-returns/issues"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "homepage": "https://github.com/saifelse/coffeelint-no-implicit-returns",
+  "peerDependencies": {
+    "coffeelint": ">=1.4"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.0"
+  }
+}
