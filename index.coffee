@@ -19,7 +19,7 @@ module.exports = class NoImplicitReturns
       # Ignore constructors
       return
 
-    if expressions.length > 1 and not lastType.isStatement?()
+    if expressions.length > 1 and not lastExpr.isStatement?()
       # Multi-line but doesn't end with a pure statement
       @errors.push astApi.createError
         context: code.variable
