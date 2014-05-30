@@ -12,6 +12,8 @@ module.exports = class NoImplicitReturns
 
     expressions = code.body.expressions
     lastExpr = code.body.lastNonComment expressions
+    if not lastExpr?
+      return
     lastType = lastExpr.constructor.name
     lastExprLine = lastExpr.locationData.first_line + 1
 
@@ -49,7 +51,7 @@ module.exports = class NoImplicitReturns
       if child.constructor.name == 'Class'
         # Mark constructor since it does not need a return.
         child.walkBody child.determineName(), {}
-        child.ctor.isCtorBody = true
+        child.ctor?.isCtorBody = true
       if child.constructor.name == 'Code'
         # For each function, process it and recurse.
         @processFunction child, astApi
