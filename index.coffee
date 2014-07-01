@@ -26,7 +26,7 @@ module.exports = class NoImplicitReturns
       @errors.push astApi.createError
         context: code.variable
         lineNumber: firstLine
-        lineNumberEnd: firstLine
+        lineNumberEnd: lastLine
     else if expressions.length == 1
       if firstLine == lastLine and lastType == 'Return'
         # Single line that ends with a return
@@ -35,14 +35,13 @@ module.exports = class NoImplicitReturns
           message: 'Explicit return not required for single-line function'
           level: 'warn'
           lineNumber: firstLine
-          lineNumberEnd: firstLine
       if firstLine != lastLine and not lastExpr.isStatement?() and firstLine != lastExprLine
         # Single-expression function that spans multiple lines with a leading newline.
         @errors.push astApi.createError
           message: 'Remove leading newline or add explicit return'
           context: code.variable
           lineNumber: firstLine
-          lineNumberEnd: firstLine
+          lineNumberEnd: lastLine
     return
 
   lintNode: (node, astApi) ->
