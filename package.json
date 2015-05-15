@@ -26,6 +26,10 @@
     "node": ">= 0.10.0"
   },
   "homepage": "https://github.com/saifelse/coffeelint-no-implicit-returns",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saifelse/coffeelint-no-implicit-returns"
+  },
   "peerDependencies": {
     "coffeelint": ">=1.4"
   },
