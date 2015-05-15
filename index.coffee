@@ -21,7 +21,14 @@ module.exports = class NoImplicitReturns
       # Ignore constructors
       return
 
-    if expressions.length > 1 and not lastExpr.isStatement?()
+    # An expression is a pure statement if it jumps().
+    # Base cases: return, continue (not in loop), break (not in a loop or block)
+    #   are jumps/pure.
+    # Inductive step: everything else jumps if they contain a child node that
+    #   jumps.
+    isPureStatement = lastExpr.jumps()
+
+    if expressions.length > 1 and not isPureStatement
       # Multi-line but doesn't end with a pure statement
       @errors.push astApi.createError
         context: code.variable
@@ -36,7 +43,7 @@ module.exports = class NoImplicitReturns
           level: 'warn'
           lineNumber: firstLine
           lineNumberEnd: firstLine
-      if firstLine != lastLine and not lastExpr.isStatement?() and firstLine != lastExprLine
+      if firstLine != lastLine and not isPureStatement and firstLine != lastExprLine
         # Single-expression function that spans multiple lines with a leading newline.
         @errors.push astApi.createError
           message: 'Remove leading newline or add explicit return'
