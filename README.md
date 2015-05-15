@@ -1,33 +1,8 @@
-coffeelint-no-implicit-returns
-==============================
+THIS IS NOT THE OFFICIAL coffeelint-no-implicit-returns REPO
+============================================================
 
-CoffeeLint rule that checks for explicit returns in multi-line functions
+This is a fork I made for a bugfix.
 
-Description
------------
+Official repo: https://github.com/saifelse/coffeelint-no-implicit-returns/
 
-This [CoffeeLint](http://www.coffeelint.org/) rule verifies that multi-line functions have an
-explicit return statement.
-
-Installation
-------------
-
-```sh
-npm install coffeelint-no-implicit-returns
-```
-
-Usage
------
-
-Add the following configuration to `coffeelint.json`:
-
-```json
-"no_implicit_returns": {
-  "module": "coffeelint-no-implicit-returns"
-}
-```
-
-Configuration
--------------
-
-There are currently no configuration options.
+The bug in question: https://github.com/saifelse/coffeelint-no-implicit-returns/issues/6
