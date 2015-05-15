@@ -17,6 +17,9 @@ module.exports = class NoImplicitReturns
     lastType = lastExpr.constructor.name
     lastExprLine = lastExpr.locationData.first_line + 1
 
+    expressionFirstLine = lastExpr.locationData.first_line + 1
+    expressionLastLine = (lastExpr.locationData.last_line + 1 unless lastExpr.locationData.last_line == lastExpr.locationData.first_line)
+
     if code.isCtorBody
       # Ignore constructors
       return
@@ -25,8 +28,8 @@ module.exports = class NoImplicitReturns
       # Multi-line but doesn't end with a pure statement
       @errors.push astApi.createError
         context: code.variable
-        lineNumber: firstLine
-        lineNumberEnd: firstLine
+        lineNumber: expressionFirstLine
+        lineNumberEnd: expressionLastLine
     else if expressions.length == 1
       if firstLine == lastLine and lastType == 'Return'
         # Single line that ends with a return
@@ -34,15 +37,15 @@ module.exports = class NoImplicitReturns
           context: code.variable
           message: 'Explicit return not required for single-line function'
           level: 'warn'
-          lineNumber: firstLine
-          lineNumberEnd: firstLine
+          lineNumber: expressionFirstLine
+          lineNumberEnd: expressionLastLine
       if firstLine != lastLine and not lastExpr.isStatement?() and firstLine != lastExprLine
         # Single-expression function that spans multiple lines with a leading newline.
         @errors.push astApi.createError
           message: 'Remove leading newline or add explicit return'
           context: code.variable
-          lineNumber: firstLine
-          lineNumberEnd: firstLine
+          lineNumber: expressionFirstLine
+          lineNumberEnd: expressionLastLine
     return
 
   lintNode: (node, astApi) ->
