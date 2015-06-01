@@ -30,4 +30,14 @@ Add the following configuration to `coffeelint.json`:
 Configuration
 -------------
 
-There are currently no configuration options.
+**strict**: If false, single-expression functions that spans multiple lines are
+allowed.
+
+Example:
+
+```json
+"no_implicit_returns": {
+  "module": "coffeelint-no-implicit-returns",
+  "strict": false
+}
+```
