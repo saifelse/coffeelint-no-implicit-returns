@@ -2,6 +2,7 @@ module.exports = class NoImplicitReturns
 
   rule:
     name: 'no_implicit_returns'
+    strict: true
     level: 'error'
     message: 'Explicit return required for multi-line function'
     description: 'Checks for explicit returns in multi-line functions'
@@ -43,7 +44,8 @@ module.exports = class NoImplicitReturns
           level: 'warn'
           lineNumber: firstLine
           lineNumberEnd: firstLine
-      if firstLine != lastLine and not isPureStatement and firstLine != lastExprLine
+      isStrict = astApi.config[@rule.name].strict
+      if isStrict and firstLine != lastLine and not isPureStatement and firstLine != lastExprLine
         # Single-expression function that spans multiple lines with a leading newline.
         @errors.push astApi.createError
           message: 'Remove leading newline or add explicit return'
