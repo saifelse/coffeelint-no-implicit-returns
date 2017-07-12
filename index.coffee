@@ -45,7 +45,6 @@ module.exports = class NoImplicitReturns
         @errors.push astApi.createError
           context: code.variable
           message: 'Explicit return not required for single-line function'
-          level: 'warn'
           lineNumber: firstLine
           lineNumberEnd: firstLine
 
