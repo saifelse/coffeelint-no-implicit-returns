@@ -26,7 +26,10 @@ module.exports = class NoImplicitReturns
 
     # An expression is a pure statement if it jumps(), i.e. contains:
     # return, continue (not in loop), or break (not in a loop or block)
-    isPureStatement = lastExpr.jumps()
+    # Throw is technically a jump too, but not treated as such by compiler,
+    # see exports.Return and exports.Throw implementations in src/nodes.coffee
+    # in main coffeescript codebase (https://github.com/jashkenas/coffeescript/)
+    isPureStatement = lastExpr.jumps() or @type(lastExpr) == 'Throw'
 
     firstLine = code.locationData.first_line + 1
     lastLine = code.locationData.last_line + 1
